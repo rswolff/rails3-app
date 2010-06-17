@@ -2,9 +2,41 @@ empty_directory "lib/generators"
 git :clone => "--depth 0 http://github.com/leshill/rails3-app.git lib/generators"
 remove_dir "lib/generators/.git"
 
-gem "haml", ">= 3.0.12"
-gem "capistrano"
-gem "mysql"
+gemfile = <<-GEMFILE
+  source 'http://rubygems.org'
+
+  gem 'rails', '3.0.0.beta4'
+
+  # Bundle edge Rails instead:
+  # gem 'rails', :git => 'git://github.com/rails/rails.git'
+
+  gem "haml", ">= 3.0.12"
+  gem "compass"
+  gem "capistrano"
+  gem "mysql"
+
+  # Use unicorn as the web server
+  # gem 'unicorn'
+
+  # To use debugger
+  # gem 'ruby-debug'
+
+  # Bundle the extra gems:
+  # gem 'bj'
+  # gem 'nokogiri', '1.4.1'
+  # gem 'sqlite3-ruby', :require => 'sqlite3'
+  # gem 'aws-s3', :require => 'aws/s3'
+
+  # Bundle gems for certain environments:
+  # gem 'rspec', :group => :test
+  # group :test do
+  #   gem 'webrat'
+  # end
+  
+GEMFILE
+
+remove_file "Gemfile"
+create_file "Gemfile", gemfile
 
 generators = <<-GENERATORS
 
@@ -34,8 +66,11 @@ layout = <<-LAYOUT
 !!!
 %html
   %head
-    %title #{app_name.humanize}
-    = stylesheet_link_tag :all
+    %title Testapp
+    = stylesheet_link_tag 'screen.css', :media => 'screen, projection'
+    = stylesheet_link_tag 'print.css', :media => 'print'
+    /[if lt IE 8]
+      = stylesheet_link_tag 'ie.css', :media => 'screen, projection'
     = javascript_include_tag :defaults
     = csrf_meta_tag
   %body
@@ -44,6 +79,8 @@ LAYOUT
 
 remove_file "app/views/layouts/application.html.erb"
 create_file "app/views/layouts/application.html.haml", layout
+
+remove_file "public/index.html"
 
 create_file "log/.gitkeep"
 create_file "tmp/.gitkeep"
