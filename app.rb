@@ -3,7 +3,8 @@ git :clone => "--depth 0 http://github.com/leshill/rails3-app.git lib/generators
 remove_dir "lib/generators/.git"
 
 gem "haml", ">= 3.0.12"
-gem "factory_girl", ">= 1.2.4", :group => :test
+gem "capistrano"
+gem "mysql"
 
 generators = <<-GENERATORS
 
@@ -46,6 +47,8 @@ create_file "app/views/layouts/application.html.haml", layout
 
 create_file "log/.gitkeep"
 create_file "tmp/.gitkeep"
+
+capify!
 
 git :init
 git :add => "."
