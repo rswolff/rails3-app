@@ -1,24 +1,14 @@
-rvmrc = <<-RVMRC
-rvm_gemset_create_on_use_flag=1
-rvm gemset use #{app_name}
-RVMRC
-
-create_file ".rvmrc", rvmrc
-
 empty_directory "lib/generators"
 git :clone => "--depth 0 http://github.com/leshill/rails3-app.git lib/generators"
 remove_dir "lib/generators/.git"
 
 gem "haml", ">= 3.0.12"
-gem "rspec-rails", ">= 2.0.0.beta.11", :group => :test
 gem "factory_girl", ">= 1.2.4", :group => :test
 
 generators = <<-GENERATORS
 
     config.generators do |g|
       g.template_engine :haml
-      g.test_framework :rspec, :fixture => true, :views => false
-      g.fixture_replacement :factory_girl, :dir => "spec/factories"
     end
 GENERATORS
 
