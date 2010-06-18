@@ -44,12 +44,19 @@ GEMFILE
 remove_file "Gemfile"
 create_file "Gemfile", gemfile
 
-generate(:controller, "pages home")
 route("root :to => 'pages\#home'")
+generate(:controller, "pages home")
 
 #css
 empty_directory "app/stylesheets"
 git :clone => "--depth 0 http://github.com/joshuaclayton/blueprint-css.git public/stylesheets/blueprint"
+
+sass_options = <<-SASS_OPTIONS
+  Sass::Plugin.options[:style] = :expanded
+  Sass::Plugin.options[:template_location] = 'app/stylesheets'
+SASS_OPTIONS
+
+application sass_options
 
 #generators
 empty_directory "lib/generators"
@@ -57,7 +64,6 @@ git :clone => "--depth 0 http://github.com/rswolff/rails3-app.git lib/generators
 remove_dir "lib/generators/.git"
 
 generators = <<-GENERATORS
-
     config.generators do |g|
       g.template_engine :haml
     end
