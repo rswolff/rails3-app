@@ -1,5 +1,5 @@
 empty_directory "lib/generators"
-git :clone => "--depth 0 http://github.com/leshill/rails3-app.git lib/generators"
+git :clone => "--depth 0 http://github.com/rswolff/rails3-app.git lib/generators"
 remove_dir "lib/generators/.git"
 
 gemfile = <<-GEMFILE
@@ -74,6 +74,7 @@ layout = <<-LAYOUT
     = javascript_include_tag :defaults
     = csrf_meta_tag
   %body
+  #container
     = yield
 LAYOUT
 
@@ -87,6 +88,18 @@ create_file "tmp/.gitkeep"
 
 capify!
 
+file '.gitignore', <<-END
+config/database.yml
+log/*.log
+tmp/**/*
+.DS\_Store
+.DS_Store
+/log/*.pid
+public/system/*
+app/stylesheets/*
+END
+
+
 git :init
 git :add => "."
 
@@ -95,10 +108,8 @@ docs = <<-DOCS
 Run the following commands to complete the setup of #{app_name.humanize}:
 
 % cd #{app_name}
-% gem install bundler
-% bundle install
-% bundle lock
-% script/rails generate rspec:install
+% sudo gem install bundler
+% sudo bundle install
 
 DOCS
 
