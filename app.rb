@@ -3,12 +3,11 @@ def commit_state(comment)
   git :commit => "-am '#{comment}'"
 end
 
+#remove crufty files
 remove_file "README"
+remove_file "public/index.html"
 
-empty_directory "lib/generators"
-git :clone => "--depth 0 http://github.com/rswolff/rails3-app.git lib/generators"
-remove_dir "lib/generators/.git"
-
+#gmefile
 gemfile = <<-GEMFILE
   source 'http://rubygems.org'
 
@@ -45,6 +44,17 @@ GEMFILE
 remove_file "Gemfile"
 create_file "Gemfile", gemfile
 
+generate(:controller, "pages home")
+
+#css
+empty_directory "app/stylesheets"
+git :clone => "http://github.com/joshuaclayton/blueprint-css.git public/stylesheets"
+
+#generators
+empty_directory "lib/generators"
+git :clone => "--depth 0 http://github.com/rswolff/rails3-app.git lib/generators"
+remove_dir "lib/generators/.git"
+
 generators = <<-GENERATORS
 
     config.generators do |g|
@@ -74,10 +84,10 @@ layout = <<-LAYOUT
 %html
   %head
     %title Testapp
-    = stylesheet_link_tag 'screen.css', :media => 'screen, projection'
-    = stylesheet_link_tag 'print.css', :media => 'print'
+    = stylesheet_link_tag 'blueprint/screen.css', :media => 'screen, projection'
+    = stylesheet_link_tag 'blueprint/print.css', :media => 'print'
     /[if lt IE 8]
-      = stylesheet_link_tag 'ie.css', :media => 'screen, projection'
+      = stylesheet_link_tag 'blueprint/ie.css', :media => 'screen, projection'
     = javascript_include_tag :defaults
     = csrf_meta_tag
   %body
