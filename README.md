@@ -4,8 +4,7 @@ Rails 3, RSpec, Factory Girl, Haml, and jQuery
 Easily generate a Rails 3 application with RSpec, Factory Girl, Haml, and
 jQuery in one line:
 
-    % rails my_app -J -d "mysql" -m \
-    http://github.com/rswolff/rails3-app/raw/master/app.rb
+    % rails new my_app -J -d "mysql" -m http://github.com/rswolff/rails3-app/raw/master/app.rb
 
 Generators
 ----------
