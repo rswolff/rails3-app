@@ -1,9 +1,0 @@
-.bundle
-config/database.yml
-log/*.log
-tmp/**/*
-.DS_Store
-.DS_Store
-/log/*.pid
-public/system/*
-app/stylesheets/*

@@ -48,7 +48,7 @@ generate(:controller, "pages home")
 
 #css
 empty_directory "app/stylesheets"
-git :clone => "http://github.com/joshuaclayton/blueprint-css.git public/stylesheets"
+git :clone => "http://github.com/joshuaclayton/blueprint-css.git public/stylesheets/blueprint"
 
 #generators
 empty_directory "lib/generators"
@@ -120,7 +120,7 @@ public/system/*
 app/stylesheets/*
 END
 
-
+git :init
 commit_state("initial commit")
 
 docs = <<-DOCS
