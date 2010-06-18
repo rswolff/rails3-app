@@ -45,10 +45,11 @@ remove_file "Gemfile"
 create_file "Gemfile", gemfile
 
 generate(:controller, "pages home")
+route("root :to => 'pages\#home'")
 
 #css
 empty_directory "app/stylesheets"
-git :clone => "http://github.com/joshuaclayton/blueprint-css.git public/stylesheets/blueprint"
+git :clone => "--depth 0 http://github.com/joshuaclayton/blueprint-css.git public/stylesheets/blueprint"
 
 #generators
 empty_directory "lib/generators"
@@ -104,7 +105,6 @@ create_file "log/.gitkeep"
 create_file "tmp/.gitkeep"
 
 capify!
-
 
 remove_file ".gitignore"
 
