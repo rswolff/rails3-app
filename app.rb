@@ -99,6 +99,7 @@ capify!
 remove_file "config/database.yml"
 
 file '.gitignore', <<-END
+.bundle
 config/database.yml
 log/*.log
 tmp/**/*
