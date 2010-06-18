@@ -96,7 +96,7 @@ create_file "tmp/.gitkeep"
 capify!
 
 
-remove_file "config/database.yml"
+remove_file ".gitignore"
 
 file '.gitignore', <<-END
 .bundle
