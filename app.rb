@@ -1,3 +1,10 @@
+def commit_state(comment)
+  git :add => "."
+  git :commit => "-am '#{comment}'"
+end
+
+remove_file "README"
+
 empty_directory "lib/generators"
 git :clone => "--depth 0 http://github.com/rswolff/rails3-app.git lib/generators"
 remove_dir "lib/generators/.git"
@@ -88,6 +95,9 @@ create_file "tmp/.gitkeep"
 
 capify!
 
+
+remove_file "config/database.yml"
+
 file '.gitignore', <<-END
 config/database.yml
 log/*.log
@@ -100,8 +110,7 @@ app/stylesheets/*
 END
 
 
-git :init
-git :add => "."
+commit_state("initial commit")
 
 docs = <<-DOCS
 
