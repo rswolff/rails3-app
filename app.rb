@@ -64,9 +64,9 @@ git :clone => "--depth 0 http://github.com/rswolff/rails3-app.git lib/generators
 remove_dir "lib/generators/.git"
 
 generators = <<-GENERATORS
-    config.generators do |g|
-      g.template_engine :haml
-    end
+  config.generators do |g|
+    g.template_engine :haml
+  end
 GENERATORS
 
 application generators
@@ -129,6 +129,20 @@ END
 git :init
 commit_state("initial commit")
 
+def create_github_repo
+
+  github_username = ask("What is your GitHub username?")
+  github_api_tokine = ask("What is your GitHub API token?")
+  
+  private_repo = 0
+  private_repo = 1 if yes?("Make #{app_name} GitHub repo private?")
+
+  run 'curl -F 'login="#{github_username}"' -F 'token="#{github_api_token}"' -F 'name="#{app_name}"' -F 'public="#{private_repo}"' http://github.com/api/v2/json/repos/create'
+  
+end
+
+create_github_repo if yes?("Create GitHub repository? (You'll need your API token)")
+  
 docs = <<-DOCS
 
 Run the following commands to complete the setup of #{app_name.humanize}:
