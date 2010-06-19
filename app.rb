@@ -5,13 +5,13 @@ end
 
 def create_github_repo_and_push
   github_username = ask("What is your GitHub username?")
-  github_api_tokine = ask("What is your GitHub API token?")
+  github_api_token = ask("What is your GitHub API token?")
   
   private_repo = 0
   private_repo = 1 if yes?("Make #{app_name} GitHub repo private?")
 
-  run 'curl -F 'login="#{github_username}"' -F 'token="#{github_api_token}"' -F 'name="#{app_name}"' -F 'public="#{private_repo}"' http://github.com/api/v2/json/repos/create' 
-  run "git git remote add origin git@github.com:rswolff/#{app_name}.git"
+  run "curl -F 'login=#{github_username}' -F 'token=#{github_api_token}' -F 'name=#{app_name}' -F 'public=#{private_repo}' http://github.com/api/v2/json/repos/create" 
+  run "git remote add origin git@github.com:rswolff/#{app_name}.git"
   run 'git push origin master'
 end
 
