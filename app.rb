@@ -1,18 +1,20 @@
+require 'json'
+
 def commit_state(comment)
   git :add => "."
   git :commit => "-am '#{comment}'"
 end
 
 def create_github_repo_and_push
-  github_username = ask("What is your GitHub username?")
-  github_api_token = ask("What is your GitHub API token?")
-  
-  private_repo = 0
-  private_repo = 1 if yes?("Make #{app_name} GitHub repo private?")
+  github_username = run 'git config --get github.user'
+  github_token = run 'git config --get github.token'
 
-  run "curl -F 'login=#{github_username}' -F 'token=#{github_api_token}' -F 'name=#{app_name}' -F 'public=#{private_repo}' http://github.com/api/v2/json/repos/create" 
-  run "git remote add origin git@github.com:rswolff/#{app_name}.git"
-  run 'git push origin master'
+  response = run "curl -F 'login=#{github_username.chomp}' -F 'token=#{github_token.chomp}' -F 'name=#{app_name}' -F 'public=1' http://github.com/api/v2/json/repos/create"
+  
+  json_response = JSON.parse(response)
+  
+  run "git remote add origin git@github.com:#{json_response["repository"]["owner"]}/#{app_name}.git"
+  run 'git push origin master'  
 end
 
 #remove crufty files
@@ -61,7 +63,7 @@ generate(:controller, "pages home")
 
 #css
 empty_directory "app/stylesheets"
-git :clone => "--depth 0 http://github.com/joshuaclayton/blueprint-css.git public/stylesheets/blueprint"
+#git :clone => "--depth 0 http://github.com/joshuaclayton/blueprint-css.git public/stylesheets/blueprint"
 
 sass_options = <<-SASS_OPTIONS
   Sass::Plugin.options[:style] = :expanded
@@ -72,7 +74,7 @@ application sass_options
 
 #generators
 empty_directory "lib/generators"
-git :clone => "--depth 0 http://github.com/rswolff/rails3-app.git lib/generators"
+#git :clone => "--depth 0 http://github.com/rswolff/rails3-app.git lib/generators"
 remove_dir "lib/generators/.git"
 
 generators = <<-GENERATORS
@@ -141,7 +143,7 @@ END
 git :init
 commit_state("initial commit")
 
-create_github_repo_and_push if yes?("Create GitHub repository? (You'll need your API token.)")
+create_github_repo_and_push if yes?("Create GitHub repository?") 
   
 docs = <<-DOCS
 
