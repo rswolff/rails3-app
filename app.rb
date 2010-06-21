@@ -91,9 +91,11 @@ GENERATORS
 
 application generators
 
-get "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js",  "public/javascripts/jquery.js"
-get "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js", "public/javascripts/jquery-ui.js"
-get "http://github.com/rails/jquery-ujs/raw/master/src/rails.js", "public/javascripts/rails.js"
+inside "public/javascripts/" do
+  get "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"
+  get "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js"
+  get "http://github.com/rails/jquery-ujs/raw/master/src/rails.js"
+end
 
 jquery = <<-JQUERY
 module ActionView::Helpers::AssetTagHelper
@@ -118,7 +120,7 @@ layout = <<-LAYOUT
     = javascript_include_tag :defaults
     = csrf_meta_tag
   %body
-  #container
+  .container
     = yield
 LAYOUT
 
