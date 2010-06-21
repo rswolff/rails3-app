@@ -62,8 +62,14 @@ route("root :to => 'pages\#home'")
 generate(:controller, "pages home")
 
 #css
-empty_directory "app/stylesheets"
-git :clone => "--depth 0 http://github.com/joshuaclayton/blueprint-css.git public/stylesheets/blueprint"
+empty_directory "app/stylesheets/"
+empty_directory "public/stylesheets/blueprint"
+
+inside("public/stylesheets/blueprint") do 
+  get "http://github.com/joshuaclayton/blueprint-css/raw/master/blueprint/screen.css"
+  get "http://github.com/joshuaclayton/blueprint-css/raw/master/blueprint/print.css"
+  get "http://github.com/joshuaclayton/blueprint-css/raw/master/blueprint/ie.css"
+end
 
 sass_options = <<-SASS_OPTIONS
   Sass::Plugin.options[:style] = :compact
