@@ -108,6 +108,22 @@ JQUERY
 
 initializer "jquery.rb", jquery
 
+date_time_formats = <<-DATE_TIME_FORMATS
+Date::DATE_FORMATS.merge!(
+  :short => "%Y/%m/%d",
+  :med => "%d-%b-%Y",
+  :long => "%A %B %d, %Y",
+  :military => "%H%M"  
+)
+
+Time::DATE_FORMATS.merge!(
+  :military => "%H%M",
+  :short => "%I:%M %p"  
+)
+DATE_TIME_FORMATS
+
+initializer "custom_date_formats.rb", date_time_formats
+
 layout = <<-LAYOUT
 !!!
 %html
@@ -146,6 +162,7 @@ tmp/**/*
 /log/*.pid
 public/system/*
 app/stylesheets/*
+.sass-cache/*
 END
 
 git :init
