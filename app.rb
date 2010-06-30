@@ -80,7 +80,10 @@ application sass_options
 
 #generators
 empty_directory "lib/generators"
-git :clone => "--depth 0 http://github.com/rswolff/rails3-app.git lib/generators"
+inside("lib/generators") do
+  git :clone => "--depth 0 http://github.com/psynix/rails3_haml_scaffold_generator.git"
+end
+
 remove_dir "lib/generators/.git"
 
 generators = <<-GENERATORS
