@@ -158,6 +158,7 @@ remove_file ".gitignore"
 file '.gitignore', <<-END
 .bundle
 config/database.yml
+config/deploy.rb
 log/*.log
 tmp/**/*
 .DS\_Store
