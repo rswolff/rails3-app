@@ -79,9 +79,8 @@ SASS_OPTIONS
 application sass_options
 
 #generators
-empty_directory "lib/generators/haml"
 inside("lib/generators") do
-  git :clone => "--depth 0 http://github.com/psynix/rails3_haml_scaffold_generator.git"
+  git :clone => "--depth 0 http://github.com/psynix/rails3_haml_scaffold_generator.git haml"
 end
 
 remove_dir "lib/generators/haml/.git"
