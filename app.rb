@@ -147,6 +147,11 @@ create_file "app/views/layouts/application.html.haml", layout
 
 remove_file "public/index.html"
 
+#create readme
+readme = <<-README
+This RAILS3 applicaiton template was created by Scott Wolff, and can be forked on github at http://github.com/rswolff/rails3-app.
+README
+
 create_file "log/.gitkeep"
 create_file "tmp/.gitkeep"
 
