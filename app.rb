@@ -102,7 +102,7 @@ end
 jquery = <<-JQUERY
 module ActionView::Helpers::AssetTagHelper
   remove_const :JAVASCRIPT_DEFAULT_SOURCES
-  JAVASCRIPT_DEFAULT_SOURCES = %w(jquery.js jquery-ui.js rails.js)
+  JAVASCRIPT_DEFAULT_SOURCES = %w(jquery.min.js jquery-ui.min.js rails.js)
 
   reset_javascript_include_default
 end
@@ -149,7 +149,7 @@ remove_file "public/index.html"
 
 #create readme
 readme = <<-README
-This RAILS3 applicaiton template was created by Scott Wolff, and can be forked on github at http://github.com/rswolff/rails3-app.
+This RAILS3 applicaiton template was created by Scott Wolff (@rswolff), and can be forked on github at http://github.com/rswolff/rails3-app.
 README
 
 create_file "log/.gitkeep"
