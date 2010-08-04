@@ -93,6 +93,24 @@ GENERATORS
 
 application generators
 
+#initializers
+date_time_formats = <<-DATE_TIME_FORMATS
+Date::DATE_FORMATS.merge!(
+  :short => "%Y/%m/%d",
+  :med => "%d-%b-%Y",
+  :long => "%A %B %d, %Y",
+  :military => "%H%M"  
+)
+
+Time::DATE_FORMATS.merge!(
+  :military => "%H%M",
+  :short => "%I:%M %p"  
+)
+DATE_TIME_FORMATS
+
+initializer "custom_date_formats.rb", date_time_formats
+
+#javascripts
 inside "public/javascripts/" do
   get "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"
   get "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js"
@@ -110,22 +128,6 @@ JQUERY
 
 initializer "jquery.rb", jquery
 
-date_time_formats = <<-DATE_TIME_FORMATS
-Date::DATE_FORMATS.merge!(
-  :short => "%Y/%m/%d",
-  :med => "%d-%b-%Y",
-  :long => "%A %B %d, %Y",
-  :military => "%H%M"  
-)
-
-Time::DATE_FORMATS.merge!(
-  :military => "%H%M",
-  :short => "%I:%M %p"  
-)
-DATE_TIME_FORMATS
-
-initializer "custom_date_formats.rb", date_time_formats
-
 layout = <<-LAYOUT
 !!!
 %html
@@ -139,8 +141,16 @@ layout = <<-LAYOUT
     = csrf_meta_tag
   %body
   .container
+    = render :partial => 'shared/nav'
     = yield
 LAYOUT
+
+#file and directory housekeeping
+
+empty_directory "app/views/shared"
+inside "app/views/shared" do
+  create_file "_nav.html.haml"
+end
 
 remove_file "app/views/layouts/application.html.erb"
 create_file "app/views/layouts/application.html.haml", layout
