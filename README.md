@@ -1,8 +1,7 @@
-Rails 3, RSpec, Factory Girl, Haml, and jQuery
+Rails 3 Template
 ==============================================
 
-Easily generate a Rails 3 application with RSpec, Factory Girl, Haml, and
-jQuery in one line:
+Easily generate a Rails 3 application with Haml, SASS, jQuery and GitHub
 
     % rails new my_app -J -d "mysql" -m http://github.com/rswolff/rails3-app/raw/master/app.rb
 
@@ -21,7 +20,7 @@ Includes to be jQuery.
 git
 ---
 
-We love `git`, so the application has a git repo initialized with all the initial changes staged.
+We love `git`, so the application has a git repo initialized with all the initial changes staged and optionally committed.
 
 Wrap Up
 -------
@@ -31,4 +30,3 @@ After the application has been generated, there are a few clean up commands to r
     % cd my_app
     % gem install bundler
     % bundle install
-    % bundle lock
