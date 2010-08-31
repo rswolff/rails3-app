@@ -25,7 +25,7 @@ remove_file "public/index.html"
 gemfile = <<-GEMFILE
   source 'http://rubygems.org'
 
-  gem 'rails', '3.0.0.beta4'
+  gem 'rails', '3.0.0'
 
   # Bundle edge Rails instead:
   # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -34,6 +34,8 @@ gemfile = <<-GEMFILE
   gem "compass"
   gem "capistrano"
   gem "mysql"
+  gem "devise"
+  gem "cancan"
 
   # Use unicorn as the web server
   # gem 'unicorn'
@@ -121,6 +123,23 @@ inside "public/javascripts/" do
   get "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"
   get "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js"
   get "http://github.com/rails/jquery-ujs/raw/master/src/rails.js"
+end
+
+#devise
+run 'rails generate devise:install'
+run 'rails generate devise User'
+
+#cancan
+inside "app/models" do
+  ability = <<-ABILITY
+class Ability
+  include CanCan::Ability
+
+  def initialize(user)
+    user ||= User.new #guest user
+  end
+end
+  ABILITY
 end
 
 #css
