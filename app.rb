@@ -30,7 +30,7 @@ gemfile = <<-GEMFILE
   # Bundle edge Rails instead:
   # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-  gem "haml", ">= 3.0.12"
+  gem "haml", ">= 3.0.18"
   gem "compass"
   gem "capistrano"
   gem "mysql"
@@ -78,6 +78,12 @@ SASS_OPTIONS
 
 application sass_options
 
+jquery = <<-JQUERY
+  config.action_view.javascript_expansions[:defaults] = ['jquery.min.js', 'rails.js']
+JQUERY
+
+application jquery
+
 #generators
 inside("lib/generators") do
   git :clone => "--depth 0 http://github.com/psynix/rails3_haml_scaffold_generator.git haml"
@@ -117,14 +123,28 @@ inside "public/javascripts/" do
   get "http://github.com/rails/jquery-ujs/raw/master/src/rails.js"
 end
 
-jquery = <<-JQUERY
-module ActionView::Helpers::AssetTagHelper
-  remove_const :JAVASCRIPT_DEFAULT_SOURCES
-  JAVASCRIPT_DEFAULT_SOURCES = %w(jquery.min.js jquery-ui.min.js rails.js)
+#css
 
-  reset_javascript_include_default
+base = <<-BASE
+/* base styles go here */
+ul#nav {
+	padding-left: 0px
+}
+ul#nav li {
+  display: inline;
+  list-style-type: none;
+  padding-right: 20px;
+}
+BASE
+
+app = <<-APP
+/* appy styles go here */
+APP
+
+inside "app/stylesheets" do
+  create_file "base.scss", base 
+  create_file "app.scss", app
 end
-JQUERY
 
 initializer "jquery.rb", jquery
 
@@ -137,6 +157,8 @@ layout = <<-LAYOUT
     = stylesheet_link_tag 'blueprint/print.css', :media => 'print'
     /[if lt IE 8]
       = stylesheet_link_tag 'blueprint/ie.css', :media => 'screen, projection'
+    = stylesheet_link_tag 'base'
+    = stylesheet_link_tag 'app'
     = javascript_include_tag :defaults
     = csrf_meta_tag
   %body
@@ -147,9 +169,15 @@ LAYOUT
 
 #file and directory housekeeping
 
+#basic navlist
+nav = <<-NAV
+%ul#nav
+  %li= link_to "home", root_path
+NAV
+
 empty_directory "app/views/shared"
 inside "app/views/shared" do
-  create_file "_nav.html.haml"
+  create_file "_nav.html.haml", nav
 end
 
 remove_file "app/views/layouts/application.html.erb"
