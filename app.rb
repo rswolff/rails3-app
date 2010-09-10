@@ -33,7 +33,7 @@ gemfile = <<-GEMFILE
   gem "haml", ">= 3.0.18"
   gem "compass"
   gem "capistrano"
-  gem "mysql"
+  gem "mysql2"
   gem "devise"
   gem "cancan"
 
