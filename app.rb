@@ -165,8 +165,6 @@ inside "app/stylesheets" do
   create_file "app.scss", app
 end
 
-initializer "jquery.rb", jquery
-
 layout = <<-LAYOUT
 !!!
 %html
