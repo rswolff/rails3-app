@@ -1,8 +1,3 @@
-#devise
-puts "Install Devise"
-run 'rails generate devise:install'
-run 'rails generate devise User'
-
 #cancan
 puts "Install CanCan and create Ability.rb"
 inside "app/models" do
