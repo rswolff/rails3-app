@@ -4,6 +4,7 @@
 require 'json'
 
 root_dir = "~/Rails/rails3-app"
+use_rvm = false
 
 @repository_url = nil
 
@@ -33,6 +34,7 @@ apply "#{root_dir}/capistrano.rb"
 apply "#{root_dir}/authentication_authorization.rb"
 apply "#{root_dir}/initializers.rb"
 apply "#{root_dir}/gitconfig.rb"
+apply "#{root_dir}/rvm.rb" if yes? "Add .rvmrc?"
 
 puts "Remove README and public/index.html"
 remove_file "README"
@@ -76,8 +78,8 @@ docs = <<-DOCS
 Run the following commands to complete the setup of #{app_name.humanize}:
 
 % cd #{app_name}
-% sudo gem install bundler
-% sudo bundle install
+% gem install bundler
+% bundle install
 % rails generate devise:install
 % rails generate devise MODEL
 
