@@ -11,21 +11,10 @@ inside("public/stylesheets/blueprint") do
 end
 
 inside "app/stylesheets" do
-  file 'base.scss', <<-BASE
+  file '_base.scss', <<-BASE
 /* base styles go here */
-ul#nav {
-	padding-left: 0px
-}
-ul#nav li {
-  display: inline;
-  list-style-type: none;
-  padding-right: 20px;
-}
-  BASE
-  
-  file 'app.scss', <<-APP
-/* appy styles go here */
 $font-size: 18px;
+$default-font-family: helvetica, arial, 'sans serif';
 
 body {
 	background-color: #F6F6F6;
@@ -35,23 +24,55 @@ body {
 /* forms */
 
 label {
-	font-size: $font-size - 2;
+	font-size: $font-size -2;
 }
 
-input[type=text], input[type=password] {
+hr {
+	margin-bottom: 15px;
+}
+
+input[type=text], input[type=password], input[type=file], select, textarea {
 	font-size: $font-size;
 	padding: 4px;
+}
+
+input[type=text].short, input[type=password].short {
+	width: 100px;
+}
+
+input[type=text].medium, input[type=password].medium {
+	width: 250px;
+}
+
+input[type=text].long, input[type=password].long {
+	width: 450px;
 }
 
 input[type=submit] {
 	font-size: $font-size;
 }
 
-#flash_messages {
-	height: $font-size;
-	line-height: $font-size;	
-	padding: 15px;
+textarea {
+	font-family: $default-font-family;
 }
+
+/* nav */
+
+ul#nav {
+	padding-left: 0px
+}
+ul#nav li {
+  display: inline;
+  list-style-type: none;
+  padding-right: 20px;
+}
+
+  BASE
+  
+  file 'app.scss', <<-APP
+@import "_base";  
+/* appy styles go here */
+
   APP
 end
 
