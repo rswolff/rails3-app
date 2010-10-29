@@ -72,7 +72,7 @@ ul#nav li {
 	font-size: $font-size - 2px;
 }
 
-/* fancy button styles thanks to: http://naioo.com/blog/css3-buttons-without-any-images/
+/* fancy button styles thanks to: http://naioo.com/blog/css3-buttons-without-any-images/ */
 button, .button {
 	-moz-border-radius:5px;
 	-webkit-border-radius:5px;
