@@ -5,9 +5,9 @@ empty_directory "app/stylesheets/"
 empty_directory "public/stylesheets/blueprint"
 
 inside("public/stylesheets/blueprint") do 
-  get "http://github.com/joshuaclayton/blueprint-css/raw/master/blueprint/screen.css"
-  get "http://github.com/joshuaclayton/blueprint-css/raw/master/blueprint/print.css"
-  get "http://github.com/joshuaclayton/blueprint-css/raw/master/blueprint/ie.css"
+  get "https://github.com/joshuaclayton/blueprint-css/raw/master/blueprint/screen.css", "screen.css"
+  get "https://github.com/joshuaclayton/blueprint-css/raw/master/blueprint/print.css", "print.css"
+  get "https://github.com/joshuaclayton/blueprint-css/raw/master/blueprint/ie.css", "ie.css"
 end
 
 inside "app/stylesheets" do
