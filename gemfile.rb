@@ -11,7 +11,7 @@ create_file 'Gemfile', <<-GEMFILE
 
   gem "haml", ">= 3.0.18"
   gem "capistrano"
-  gem "mysql2"
+  gem "mysql"
   gem "devise"
   gem "cancan"
 
