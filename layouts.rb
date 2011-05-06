@@ -15,6 +15,11 @@ inside "app/views/layouts" do
   %body
   .container
     = render :partial => 'shared/nav'
+    
+    - flash.each do |key, value|
+      #flash{:class => key}
+        =value
+    
     = yield
   LAYOUT
 end
