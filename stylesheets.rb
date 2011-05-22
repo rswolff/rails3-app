@@ -108,7 +108,7 @@ button:disabled {
   
   file 'app.scss', <<-APP
 @import "_base";  
-/* appy styles go here */
+/* app styles go here */
 
   APP
 end
