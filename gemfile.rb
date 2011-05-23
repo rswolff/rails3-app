@@ -12,7 +12,7 @@ create_file 'Gemfile', <<-GEMFILE
   gem "haml"
   gem "sass"
   gem "capistrano"
-  gem "mysql"
+  gem "mysql2"
   gem "devise"
   gem "cancan"
 
