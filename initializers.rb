@@ -9,6 +9,7 @@ Date::DATE_FORMATS.merge!(
 )
 
 Time::DATE_FORMATS.merge!(
+  :med => "%d-%b-%Y",
   :military => "%H%M",
   :short => "%I:%M %p"  
 )
