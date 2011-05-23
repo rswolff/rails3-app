@@ -9,7 +9,8 @@ create_file 'Gemfile', <<-GEMFILE
   # Bundle edge Rails instead:
   # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-  gem "haml", ">= 3.0.18"
+  gem "haml"
+  gem "sass"
   gem "capistrano"
   gem "mysql"
   gem "devise"
