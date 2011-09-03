@@ -1,16 +1,13 @@
 #CSS
 puts "Download blueprint.css and create custom app stylesheets."
 
-empty_directory "app/stylesheets/"
-empty_directory "public/stylesheets/blueprint"
-
-inside("public/stylesheets/blueprint") do 
+inside("app/assets/stylesheets/blueprint") do 
   get "https://github.com/joshuaclayton/blueprint-css/raw/master/blueprint/screen.css", "screen.css"
   get "https://github.com/joshuaclayton/blueprint-css/raw/master/blueprint/print.css", "print.css"
   get "https://github.com/joshuaclayton/blueprint-css/raw/master/blueprint/ie.css", "ie.css"
 end
 
-inside "app/stylesheets" do
+inside "app/assets/stylesheets" do
   file '_base.scss', <<-BASE
 /* base styles go here */
 $font-size: 18px;
@@ -31,20 +28,20 @@ hr {
 	margin-bottom: 15px;
 }
 
-input[type=text], input[type=password], input[type=file], select, textarea {
+input[type=text], input[type=number], input[type=password], input[type=file], select, textarea {
 	font-size: $font-size;
 	padding: 4px;
 }
 
-input[type=text].short, input[type=password].short {
+input[type=text].short, input[type=number].short, input[type=password].short {
 	width: 100px;
 }
 
-input[type=text].medium, input[type=password].medium {
+input[type=text].medium, input[type=number].medium, input[type=password].medium {
 	width: 250px;
 }
 
-input[type=text].long, input[type=password].long {
+input[type=text].long, input[type=number].long, input[type=password].long {
 	width: 450px;
 }
 
@@ -106,17 +103,17 @@ button:disabled {
 
   BASE
   
-  file 'app.scss', <<-APP
+  file 'application.css', <<-APP
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+ *= require_self
+ *= require_tree . 
+*/  
+
 @import "_base";  
 /* app styles go here */
 
   APP
 end
-
-
-sass_options = <<-SASS_OPTIONS
-  Sass::Plugin.options[:style] = :compact
-  Sass::Plugin.options[:template_location] = 'app/stylesheets'
-SASS_OPTIONS
-
-application sass_options

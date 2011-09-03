@@ -14,20 +14,18 @@ def commit_state(comment)
 end
 
 def init_github_repo_and_push
-  github_username = run 'git config --get github.user'
+  github_user = run 'git config --get github.user'
   github_token = run 'git config --get github.token'
-  response = run "curl -F 'login=#{github_username.chomp}' -F 'token=#{github_token.chomp}' -F 'name=#{app_name}' -F 'public=1' http://github.com/api/v2/json/repos/create"
-  
-  json_response = JSON.parse(response)
+  repository = run "curl -F \'login=#{github_user}\' -F \'token=#{github_token}\' -F \'name=#{app_name}\' -F \'public=1\' http://github.com/api/v2/json/repos/create"  
+  json_response = JSON["#{repository}"]
    
   @repository_url = "git@github.com:#{json_response["repository"]["owner"]}/#{json_response["repository"]["name"]}.git"
   run "git remote add origin #{@repository_url} && git push origin master"  
 end
 
 #apply templates
-apply "#{root_dir}/stylesheets.rb"
-apply "#{root_dir}/javascripts.rb"
 apply "#{root_dir}/gemfile.rb"
+apply "#{root_dir}/stylesheets.rb"
 apply "#{root_dir}/layouts.rb"
 apply "#{root_dir}/generators.rb"
 apply "#{root_dir}/capistrano.rb"
@@ -47,7 +45,7 @@ README
 
 puts "Add default route to page\#home"
 route("root :to => 'pages\#home'")
-generate(:controller, "pages home")
+generate(:controller, "pages", "home")
 
 #file and directory housekeeping
 #basic navlist

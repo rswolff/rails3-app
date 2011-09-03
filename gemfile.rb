@@ -2,36 +2,44 @@
 puts "Create Gemfile"
 remove_file "Gemfile"
 create_file 'Gemfile', <<-GEMFILE
-  source 'http://rubygems.org'
 
-  gem 'rails', '3.0.7'
+source 'http://rubygems.org'
 
-  # Bundle edge Rails instead:
-  # gem 'rails', :git => 'git://github.com/rails/rails.git'
+gem 'rails', '3.1.0'
 
-  gem "haml"
-  gem "sass"
-  gem "capistrano"
-  gem "mysql2"
-  gem "devise"
-  gem "cancan"
+# Bundle edge Rails instead:
+# gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-  # Use unicorn as the web server
-  # gem 'unicorn'
-  # gem "compass"
-  # To use debugger
-  # gem 'ruby-debug'
+gem 'mysql'
+gem 'json'
+gem 'capistrano'
+gem 'devise'
+gem 'cancan'
+gem 'haml'
 
-  # Bundle the extra gems:
-  # gem 'bj'
-  # gem 'nokogiri', '1.4.1'
-  # gem 'sqlite3-ruby', :require => 'sqlite3'
-  # gem 'aws-s3', :require => 'aws/s3'
+gem 'prawn'
+gem 'delayed_job'
+gem 'state_machine'
+gem 'whenever'
 
-  # Bundle gems for certain environments:
-  # gem 'rspec', :group => :test
-  # group :test do
-  #   gem 'webrat'
-  # end
+
+# Gems used only for assets and not required
+# in production environments by default.
+group :assets do
+  gem 'sass-rails', "  ~> 3.1.0"
+  gem 'coffee-rails', "~> 3.1.0"
+  gem 'uglifier'
+end
+
+gem 'jquery-rails'
+
+# Use unicorn as the web server
+# gem 'unicorn'
+
+# To use debugger
+# gem 'ruby-debug'
+
+
+
   
 GEMFILE

@@ -9,8 +9,8 @@ inside "app/views/layouts" do
     = stylesheet_link_tag 'blueprint/print.css', :media => 'print'
     /[if lt IE 8]
       = stylesheet_link_tag 'blueprint/ie.css', :media => 'screen, projection'
-    = stylesheet_link_tag 'app'
-    = javascript_include_tag :defaults
+    = stylesheet_link_tag    "application"
+    = javascript_include_tag "application"
     = csrf_meta_tag
   %body
   .container
