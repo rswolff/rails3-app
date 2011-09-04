@@ -43,10 +43,6 @@ create_file 'readme.md', <<-README
 This RAILS3 applicaiton template was created by Scott Wolff (@rswolff), and can be forked on github at http://github.com/rswolff/rails3-app.
 README
 
-puts "Add default route to page\#home"
-route("root :to => 'pages\#home'")
-generate(:controller, "pages", "home")
-
 #file and directory housekeeping
 #basic navlist
 empty_directory "app/views/shared"
@@ -76,6 +72,8 @@ docs = <<-DOCS
 Run the following commands to complete the setup of #{app_name.humanize}:
 
 % cd #{app_name}
+% rails generate controller pages home
+% change default route to pages#home
 % rails generate devise:install
 % rails generate devise MODEL
 
