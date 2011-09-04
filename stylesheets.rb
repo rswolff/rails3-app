@@ -1,14 +1,16 @@
 #CSS
 puts "Download blueprint.css and create custom app stylesheets."
 
-inside("app/assets/stylesheets/blueprint") do 
+empty_directory "vendor/assets/stylesheets/blueprint"
+
+inside("vendor/assets/stylesheets/blueprint") do 
   get "https://github.com/joshuaclayton/blueprint-css/raw/master/blueprint/screen.css", "screen.css"
   get "https://github.com/joshuaclayton/blueprint-css/raw/master/blueprint/print.css", "print.css"
   get "https://github.com/joshuaclayton/blueprint-css/raw/master/blueprint/ie.css", "ie.css"
 end
 
 inside "app/assets/stylesheets" do
-  file '_base.scss', <<-BASE
+  file 'base.scss', <<-BASE
 /* base styles go here */
 $font-size: 18px;
 $default-font-family: helvetica, arial, 'sans serif';
@@ -102,18 +104,4 @@ button:disabled {
 }
 
   BASE
-  
-  file 'application.css', <<-APP
-/*
- * This is a manifest file that'll automatically include all the stylesheets available in this directory
- * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
- * the top of the compiled file, but it's generally better to create a new file per style scope.
- *= require_self
- *= require_tree . 
-*/  
-
-@import "_base";  
-/* app styles go here */
-
-  APP
 end
