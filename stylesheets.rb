@@ -17,6 +17,7 @@ $default-font-family: helvetica, arial, 'sans serif';
 
 body {
 	background-color: #F6F6F6;
+	font-family: 'Open Sans', sans-serif;
 	font-size: $font-size;
 }
 
@@ -30,7 +31,7 @@ hr {
 	margin-bottom: 15px;
 }
 
-input[type=text], input[type=number], input[type=password], input[type=file], select, textarea {
+input[type=text], input[type=number], input[type=password], input[type=file], input[type=email], select, textarea {
 	font-size: $font-size;
 	padding: 4px;
 }
