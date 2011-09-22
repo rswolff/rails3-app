@@ -34,7 +34,7 @@ namespace :db do
 production:
   username: 
   password: 
-  adapter: mysql
+  adapter: mysql2
   encoding: utf8
   database: #{app_name}_production
 EOF

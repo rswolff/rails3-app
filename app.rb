@@ -23,6 +23,14 @@ def init_github_repo_and_push
   run "git remote add origin #{@repository_url} && git push origin master"  
 end
 
+if yes?("Use rbenv?")
+  inside "\#{app_path}" do
+    create_file ".rbenv-version", <<-RBENV
+    
+    RBENV
+  end
+end
+
 #apply templates
 apply "#{root_dir}/gemfile.rb"
 apply "#{root_dir}/stylesheets.rb"
@@ -32,7 +40,6 @@ apply "#{root_dir}/capistrano.rb"
 apply "#{root_dir}/authentication_authorization.rb"
 apply "#{root_dir}/initializers.rb"
 apply "#{root_dir}/gitconfig.rb"
-apply "#{root_dir}/rvm.rb" if yes? "Add .rvmrc?"
 
 puts "Remove README and public/index.html"
 remove_file "README"
