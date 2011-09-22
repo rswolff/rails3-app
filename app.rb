@@ -24,7 +24,7 @@ def init_github_repo_and_push
 end
 
 if yes?("Use rbenv?")
-  inside "\#{app_path}" do
+  inside "app" do
     create_file ".rbenv-version", <<-RBENV
     
     RBENV
