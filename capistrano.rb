@@ -5,6 +5,8 @@ inside "config" do
   remove_file "deploy.rb"
   file 'deploy.rb', <<-END
 require 'erb'
+require 'bundler/capistrano'
+require 'capistrano_colors'
 
 set :application, "#{app_name}"
 set :repository,  "%repository_url%"
