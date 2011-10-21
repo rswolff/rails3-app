@@ -1,12 +1,13 @@
-#Rails generator actions: http://github.com/rails/rails/blob/master/railties/lib/rails/generators/actions.rb
+#Rails generator actions: https://github.com/rails/rails/blob/master/railties/lib/rails/generators/actions.rb
 #Thor actions: http://rdoc.info/github/wycats/thor/master/Thor/Actions
 
 require 'json'
 
 root_dir = "~/Rails/rails3-app"
-use_rvm = false
 
 @repository_url = nil
+
+@after_bundler = []
 
 def commit_state(comment)
   git :add => "."
@@ -40,25 +41,9 @@ apply "#{root_dir}/capistrano.rb"
 apply "#{root_dir}/authentication_authorization.rb"
 apply "#{root_dir}/initializers.rb"
 apply "#{root_dir}/gitconfig.rb"
-
-puts "Remove README and public/index.html"
-remove_file "README"
-remove_file "public/index.html"
-
-#create readme
-create_file 'readme.md', <<-README
-This RAILS3 applicaiton template was created by Scott Wolff (@rswolff), and can be forked on github at http://github.com/rswolff/rails3-app.
-README
-
-#file and directory housekeeping
-#basic navlist
-empty_directory "app/views/shared"
-inside "app/views/shared" do
-  create_file "_nav.html.haml", <<-NAV
-%ul#nav
-  %li= link_to "home", root_path
-  NAV
-end
+apply "#{root_dir}/cleanup.rb"
+apply "#{root_dir}/setup.rb"
+apply "#{root_dir}/sorcery.rb"
 
 git :init
 commit_state("initial commit")
@@ -74,16 +59,14 @@ else
   end
 end
 
-docs = <<-DOCS
+say "running bundle install"
+run 'bundle install'
 
-Run the following commands to complete the setup of #{app_name.humanize}:
+say "running after bundler tasks"
+@after_bundler.each do |task|
+  task.call
+end
 
-% cd #{app_name}
-% rails generate controller pages home
-% change default route to pages#home
-% rails generate devise:install
-% rails generate devise MODEL
+rake("db:create")
 
-DOCS
-
-log docs
+say "Complete!"
