@@ -67,6 +67,4 @@ say "running after bundler tasks"
   task.call
 end
 
-rake("db:create")
-
 say "Complete!"
