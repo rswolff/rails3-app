@@ -43,7 +43,7 @@ apply "#{root_dir}/initializers.rb"
 apply "#{root_dir}/gitconfig.rb"
 apply "#{root_dir}/cleanup.rb"
 apply "#{root_dir}/setup.rb"
-apply "#{root_dir}/sorcery.rb"
+#apply "#{root_dir}/sorcery.rb"
 
 git :init
 commit_state("initial commit")
