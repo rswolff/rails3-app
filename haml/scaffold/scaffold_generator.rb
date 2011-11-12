@@ -8,8 +8,7 @@ module Haml
 
       def copy_layout_file
         return unless options[:layout]
-        template "layout.haml.erb",
-                 File.join("app/views/layouts", controller_class_path, "#{controller_file_name}.html.haml")
+        template "layout.haml.erb", File.join("app/views/layouts", controller_class_path, "#{controller_file_name}.html.haml")
       end
       
       def copy_view_files

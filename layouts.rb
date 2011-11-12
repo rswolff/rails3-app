@@ -5,10 +5,7 @@ inside "app/views/layouts" do
 %html
   %head
     %title 
-    = stylesheet_link_tag 'blueprint/screen.css', :media => 'screen, projection'
-    = stylesheet_link_tag 'blueprint/print.css', :media => 'print'
-    /[if lt IE 8]
-      = stylesheet_link_tag 'blueprint/ie.css', :media => 'screen, projection'
+    = stylesheet_link_tag 'bootstrap.css'
     
     %link{:href=>'http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700', :rel=>'stylesheet', :type=>'text/css'}
     
@@ -16,13 +13,15 @@ inside "app/views/layouts" do
     = javascript_include_tag "application"
     = csrf_meta_tag
   %body
-  .container
     = render :partial => 'shared/nav'
+
+    .container
+      - flash.each do |key, value|
+        #flash{:class => "alert-message \#{key}"}
+          =link_to "x", nil, :class => 'close'
+          %p
+            =value
     
-    - flash.each do |key, value|
-      #flash{:class => key}
-        =value
-    
-    = yield
+      = yield
   LAYOUT
 end
