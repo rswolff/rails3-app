@@ -19,7 +19,7 @@ inside "app/views/shared" do
 .topbar
   .topbar-inner
     .container
-      =link_to "\#{app_name}", root_path, {:class => 'brand'}
+      =link_to "#{app_name}", root_path, {:class => 'brand'}
       %ul.nav
         %li= link_to "nav_item", nil
         %li= link_to "nav_item", nil
