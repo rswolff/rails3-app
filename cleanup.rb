@@ -16,8 +16,8 @@ README
 empty_directory "app/views/shared"
 inside "app/views/shared" do
   create_file "_nav.html.haml", <<-NAV
-.topbar
-  .topbar-inner
+.navbar
+  .navbar-inner
     .container
       =link_to "#{app_name}", root_path, {:class => 'brand'}
       %ul.nav
