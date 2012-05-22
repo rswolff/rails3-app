@@ -16,12 +16,14 @@ README
 empty_directory "app/views/shared"
 inside "app/views/shared" do
   create_file "_nav.html.haml", <<-NAV
-.navbar
+.navbar.navbar-fixed-top
   .navbar-inner
     .container
       =link_to "#{app_name}", root_path, {:class => 'brand'}
-      %ul.nav
-        %li= link_to "nav_item", nil
-        %li= link_to "nav_item", nil
+      .nav-collapse
+        %ul.nav
+          %li= link_to "nav_item", nil
+          %li= link_to "nav_item", nil
+
   NAV
 end

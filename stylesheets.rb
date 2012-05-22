@@ -4,7 +4,7 @@ puts "Install Twitter bootstrap.css "
 empty_directory "vendor/assets/stylesheets/"
 
 append_to_file 'app/assets/stylesheets/application.css' do
-  'body {margin-top: 40px;}'
+  'body {margin-top: 60px;}'
   '#flash {margin-top: 20px;}'
 end
 
