@@ -4,7 +4,10 @@ remove_file "public/index.html"
 
 @after_bundler << lambda { generate('controller', 'pages home') }
 
+#routes
 route "root :to => 'pages#home'"
+route "match 'login' => 'user_sessions#new', :as => :login"
+route "match 'logout' => 'user_sessions#destroy', :as => :logout"
 
 #create readme
 create_file 'readme.md', <<-README

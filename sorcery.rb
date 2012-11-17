@@ -7,7 +7,7 @@
 
   say "Add sorcery to user.rb"
 
-  inject_into_file "app/models/user.rb", :before => "\nend" do
+  insert_into_file "app/models/user.rb", :before => "\nend" do
 <<-RUBY
   \n
   attr_accessible :email, :password, :password_confirmation
@@ -19,18 +19,17 @@ RUBY
 
   say "Generate UserSessions controller"
   generate(:controller, "UserSessions new create destroy")
-  
-  inject_into_file "app/controllers/user_sessions_controller.rb", :after => "\tnew" do  
-<<-RUBY
-  def new
+
+  #TODO: These insert_into_file methods are not being called.
+
+  insert_into_file "app/controllers/user_sessions_controller.rb", :after => "def new\n" do 
+    <<-RUBY
     @user = User.new
-  end
-RUBY
-  end
-  
-  inject_into_file 'app/controllers/user_sessions_controller.rb', :after => "\tcreate" do
+    RUBY
+  end 
+
+  insert_into_file 'app/controllers/user_sessions_controller.rb', :after => "def create\n" do
 <<-RUBY
-  def create
     respond_to do |format|
       if @user = login(params[:username],params[:password])
         format.html { redirect_back_or_to(:users, :notice => 'Login successfull.') }
@@ -40,23 +39,20 @@ RUBY
         format.xml { render :xml => @user.errors, :status => :unprocessable_entity }
       end
     end
-  end
 RUBY
   end
   
-  inject_into_file 'app/controllers/user_sessions_controller.rb', :after => "\tdestroy" do
+  insert_into_file 'app/controllers/user_sessions_controller.rb', :after => "def destroy\n" do
 <<-RUBY
-  def destroy
     logout
     redirect_to(:users, :notice => 'Logged out!')
-  end
 RUBY
   end
   
-  inject_into_file 'app/views/user_sessions/new.html.haml', :before => "\nend" do
+  insert_into_file 'app/views/user_sessions/new.html.haml', :before => "\nend" do
     %q[%h1 Login
       = render 'form'
       = link_to 'Back', user_sessions_path]
-  end
-  
+  end 
+
 end

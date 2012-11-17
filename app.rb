@@ -69,3 +69,4 @@ git :init
 commit_state("initial commit")
 
 say "Complete!"
+say "Remember to add Twitter Bootsrap and procompile assests in production to the asset pipeline."
