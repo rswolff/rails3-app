@@ -1,4 +1,4 @@
-puts "Remove README and public/index.html"
+say "Remove README and public/index.html"
 remove_file "README"
 remove_file "public/index.html"
 

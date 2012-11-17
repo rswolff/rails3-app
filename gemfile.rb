@@ -12,3 +12,8 @@ gem 'prawn'
 gem 'state_machine'
 gem 'whenever'
 gem 'pry', group: 'development'
+
+gem_group :production do
+  gem 'execjs'
+  gem 'therubyracer'
+end

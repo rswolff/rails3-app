@@ -1,4 +1,12 @@
 @after_bundler << lambda do
+
+  say "Rails generate sorcery:install"
+  generate('sorcery:install')  #install only base sorcery  
+  say "Migrating database to include sorcery"
+  rake('db:migrate')
+
+  say "Add sorcery to user.rb"
+
   inject_into_file "app/models/user.rb", :before => "\nend" do
 <<-RUBY
   \n
@@ -8,7 +16,8 @@
   validates_confirmation_of :password, :message => "should match confirmation", :if => :password
 RUBY
   end
-  
+
+  say "Generate UserSessions controller"
   generate(:controller, "UserSessions new create destroy")
   
   inject_into_file "app/controllers/user_sessions_controller.rb", :after => "\tnew" do  

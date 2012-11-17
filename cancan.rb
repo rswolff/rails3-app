@@ -1,5 +1,5 @@
 #cancan
-say "Install CanCan authorization"
 @after_bundler << lambda do
+	say "Install CanCan authorization"  
   generate("cancan:ability")
 end

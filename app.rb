@@ -6,7 +6,6 @@ require 'json'
 root_dir = "~/Rails/rails3-app"
 
 @repository_url = nil
-
 @after_bundler = []
 
 def commit_state(comment)
@@ -24,16 +23,14 @@ def init_github_repo_and_push
   run "git remote add origin #{@repository_url} && git push origin master"  
 end
 
-if yes?("Use rbenv?")
-  inside "app" do
-    create_file ".rbenv-version", <<-RBENV
-    
-    RBENV
-  end
+inside "app" do
+  create_file ".rbenv-version", <<-RBENV
+  
+  RBENV
 end
 
 #apply templates
-apply "#{root_dir}/gemfile.rb" #nothing
+apply "#{root_dir}/gemfile.rb"
 apply "#{root_dir}/layouts.rb"
 apply "#{root_dir}/generators.rb"
 apply "#{root_dir}/capistrano.rb"
@@ -44,14 +41,10 @@ apply "#{root_dir}/javascripts.rb"
 
 rake("db:create") 
 
-apply "#{root_dir}/user.rb"
-apply "#{root_dir}/sorcery.rb"
+# apply "#{root_dir}/user.rb" # calls generate scaffold user
+apply "#{root_dir}/sorcery.rb" # create sorcery controller
 apply "#{root_dir}/cancan.rb" #after bundler
-apply "#{root_dir}/setup.rb"
-apply "#{root_dir}/cleanup.rb"
-
-git :init
-commit_state("initial commit")
+apply "#{root_dir}/cleanup.rb" #remove readme, setup root route, create default navigation
 
 if yes?("Create GitHub repository?")
   init_github_repo_and_push
@@ -71,5 +64,8 @@ say "running after bundler tasks"
 @after_bundler.each do |task|
   task.call
 end
+
+git :init
+commit_state("initial commit")
 
 say "Complete!"
