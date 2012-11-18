@@ -18,9 +18,7 @@ RUBY
   end
 
   say "Generate UserSessions controller"
-  generate(:controller, "UserSessions new create destroy")
-
-  #TODO: These insert_into_file methods are not being called.
+  generate(:controller, "UserSessions new create destroy")  #TODO: Confirm that the user_sessions resource is being created in routes.rb
 
   insert_into_file "app/controllers/user_sessions_controller.rb", :after => "def new\n" do 
     <<-RUBY
