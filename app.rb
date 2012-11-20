@@ -1,6 +1,9 @@
 #Rails generator actions: https://github.com/rails/rails/blob/master/railties/lib/rails/generators/actions.rb
 #Thor actions: http://rdoc.info/github/wycats/thor/master/Thor/Actions
 
+
+#TODO: add signin page, add signin css
+
 require 'json'
 
 root_dir = "~/Rails/rails3-app"
