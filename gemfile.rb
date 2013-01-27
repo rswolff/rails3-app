@@ -11,6 +11,7 @@ gem 'kaminari'
 gem 'prawn'
 gem 'state_machine'
 gem 'whenever'
+gem 'haml-rails'
 
 gem_group :development do
 	gem 'pry'
