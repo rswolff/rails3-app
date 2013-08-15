@@ -5,10 +5,11 @@ inside "app/views/layouts" do
 %html
   %head
     %title 
-    = stylesheet_link_tag 'bootstrap.css'
-    
-    %link{:href=>'http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700', :rel=>'stylesheet', :type=>'text/css'}
-    
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-wip/css/bootstrap.min.css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0-wip/js/bootstrap.min.js"></script>
+
     = stylesheet_link_tag    "application"
     = javascript_include_tag "application"
     = csrf_meta_tag

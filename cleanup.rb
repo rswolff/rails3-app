@@ -5,8 +5,6 @@ remove_file "public/index.html"
 @after_bundler << lambda { generate('controller', 'pages home') }
 
 #routes
-route "match 'login' => 'user_sessions#new', :as => :login"
-route "match 'logout' => 'user_sessions#destroy', :as => :logout"
 route "get 'not_authorized' => 'pages#not_authorized'"
 route "root :to => 'pages#home'"
 
@@ -28,14 +26,22 @@ README
 empty_directory "app/views/shared"
 inside "app/views/shared" do
   create_file "_nav.html.haml", <<-NAV
-.navbar.navbar-fixed-top
-  .navbar-inner
-    .container
-      =link_to "#{app_name}", root_path, {:class => 'brand'}
-      .nav-collapse
-        %ul.nav
-          %li= link_to "nav_item", nil
-          %li= link_to "nav_item", nil
+%nav{:class => 'navbar', :role => 'navigation'}
+  .navbar-header
+    %button{:type => 'button', :class => 'navbar-toggle', :'data-toggle' => 'collapse', :'data-target' => '.navbar-ex1-collapse'}
+      %span.sr-only Toggle Navigation
+      %span.icon-bar
+      %span.icon-bar
+      %span.icon-bar
+    = link_to 'Website Title', '#', :class => 'navbar-brand'
+  .collapse.navbar-collapse.navbar-ex1-collapse
+    %ul.nav.navbar-nav
+      %li.active= link_to "Home", '#'
+      %li=link_to "Menu Item 1", '#'
+      %li=link_to "Menu Item 2", '#'
+
+
+
 
   NAV
 end
