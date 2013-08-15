@@ -11,5 +11,5 @@ append_to_file 'app/assets/stylesheets/application.css' do
 end
 
 #remove scaffold styles, but leave empty scaffold.css file in place.
-remove_file 'app/assets/stylesheets/scaffold.css'
-create_file 'app/assets/stylesheets/scaffold.css'
+remove_file 'app/assets/stylesheets/scaffolds.css.scss'
+create_file 'app/assets/stylesheets/scaffolds.css.scss'

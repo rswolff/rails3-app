@@ -6,12 +6,14 @@ inside "app/views/layouts" do
   %head
     %title 
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-wip/css/bootstrap.min.css">
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0-wip/js/bootstrap.min.js"></script>
+    %meta{:name=>"viewport", :content=>"width=device-width, initial-scale=1.0"}
+    %link{:rel => 'stylesheet', :href => '//netdna.bootstrapcdn.com/bootstrap/3.0.0-wip/css/bootstrap.min.css'}
+    = stylesheet_link_tag "application"
 
-    = stylesheet_link_tag    "application"
+    %script{:src=>"http://code.jquery.com/jquery-1.10.1.min.js"}
+    %srcipt{:src => "//netdna.bootstrapcdn.com/bootstrap/3.0.0-wip/js/bootstrap.min.js"}
     = javascript_include_tag "application"
+
     = csrf_meta_tag
   %body
     = render :partial => 'shared/nav'
@@ -24,5 +26,5 @@ inside "app/views/layouts" do
             =value
     
       = yield
-  LAYOUT
+LAYOUT
 end
