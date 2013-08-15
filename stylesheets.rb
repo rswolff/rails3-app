@@ -1,4 +1,6 @@
 #CSS
+root_dir = "~/Rails/rails3-app"
+
 say "Install Twitter bootstrap.css "
 
 empty_directory "vendor/assets/stylesheets/"
