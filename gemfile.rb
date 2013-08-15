@@ -6,12 +6,13 @@ gem 'json'
 gem 'capistrano'
 gem 'sorcery'
 gem 'cancan'
-gem 'haml'
+gem 'haml-rails', :git => "git://github.com/rswolff/haml-rails.git"
 gem 'kaminari'
 gem 'prawn'
 gem 'state_machine'
 gem 'whenever'
 gem 'money-rails'
+gem 'chronic'
 
 gem_group :development do
 	gem 'pry'
