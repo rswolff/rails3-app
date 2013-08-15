@@ -42,11 +42,12 @@ apply "#{root_dir}/gitconfig.rb"
 apply "#{root_dir}/stylesheets.rb"
 apply "#{root_dir}/javascripts.rb"
 
+say "rake db:create"
 rake("db:create") 
 
-# apply "#{root_dir}/user.rb" # calls generate scaffold user
-apply "#{root_dir}/sorcery.rb" # create sorcery controller
+say "apply after bundler templates"
 apply "#{root_dir}/cancan.rb" #after bundler
+apply "#{root_dir}/money-rails.rb" #after bundler
 apply "#{root_dir}/cleanup.rb" #remove readme, setup root route, create default navigation
 
 if yes?("Create GitHub repository?")

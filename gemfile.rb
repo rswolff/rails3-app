@@ -4,7 +4,6 @@
 gem 'mysql2'
 gem 'json'
 gem 'capistrano'
-gem 'sorcery'
 gem 'cancan'
 gem 'haml-rails', :git => "git://github.com/rswolff/haml-rails.git"
 gem 'kaminari'
