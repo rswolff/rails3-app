@@ -20,7 +20,7 @@ inside "app/views/layouts" do
 
     .container
       - flash.each do |key, value|
-        #flash{:class => "alert-message \#{key}"}
+        #flash{:class => "alert alert-\#{key}"}
           =link_to "x", nil, :class => 'close'
           %p
             =value
