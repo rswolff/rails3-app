@@ -26,7 +26,7 @@ README
 empty_directory "app/views/shared"
 inside "app/views/shared" do
   create_file "_nav.html.haml", <<-NAV
-%nav{:class => 'navbar', :role => 'navigation'}
+%nav{:class => 'navbar navbar-header', :role => 'navigation'}
   .navbar-header
     %button{:type => 'button', :class => 'navbar-toggle', :'data-toggle' => 'collapse', :'data-target' => '.navbar-ex1-collapse'}
       %span.sr-only Toggle Navigation
