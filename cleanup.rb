@@ -39,9 +39,5 @@ inside "app/views/shared" do
       %li.active= link_to "Home", '#'
       %li=link_to "Menu Item 1", '#'
       %li=link_to "Menu Item 2", '#'
-
-
-
-
   NAV
 end

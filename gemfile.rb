@@ -1,8 +1,4 @@
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
-
-gem 'mysql2'
-gem 'json'
+gem 'devise'
 gem 'capistrano'
 gem 'cancan'
 gem 'haml-rails', :git => "git://github.com/rswolff/haml-rails.git"
@@ -12,6 +8,7 @@ gem 'state_machine'
 gem 'whenever'
 gem 'money-rails'
 gem 'chronic'
+gem 'figaro'
 
 gem_group :development do
 	gem 'pry'
